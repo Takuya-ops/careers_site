@@ -263,6 +263,7 @@ a:hover {
 
 .hero-text {
     /* margin-top: 100px; */
+    margin-left: 64px;
     font-weight: bold;
     opacity: 1 !important;
     visibility: visible !important;
