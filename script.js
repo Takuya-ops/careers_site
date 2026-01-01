@@ -31,28 +31,25 @@ function initBackgroundFadeIn() {
     const heroSky = document.querySelector('.hero-sky');
     const heroBuilding = document.querySelector('.hero-building');
     const heroWindow = document.querySelector('.hero-window');
+    const heroBgImage = document.querySelector('.hero-bg-image');
     
-    if (heroBackground) {
-        // 背景要素を初期状態で非表示
-        heroSky.style.opacity = '0';
-        heroBuilding.style.opacity = '0';
-        heroWindow.style.opacity = '0';
-        
-        // 段階的にフェードイン
-        setTimeout(() => {
-            heroSky.style.transition = 'opacity 1s ease-out';
-            heroSky.style.opacity = '1';
-        }, 100);
-        
-        setTimeout(() => {
-            heroBuilding.style.transition = 'opacity 1s ease-out';
-            heroBuilding.style.opacity = '1';
-        }, 400);
-        
-        setTimeout(() => {
-            heroWindow.style.transition = 'opacity 1s ease-out';
-            heroWindow.style.opacity = '1';
-        }, 700);
+    // 背景画像は常に表示
+    if (heroBgImage) {
+        heroBgImage.style.opacity = '1';
+        heroBgImage.style.visibility = 'visible';
+    }
+    
+    if (heroSky) {
+        heroSky.style.opacity = '1';
+    }
+    
+    // 存在する要素のみ処理
+    if (heroBuilding) {
+        heroBuilding.style.opacity = '1';
+    }
+    
+    if (heroWindow) {
+        heroWindow.style.opacity = '1';
     }
 }
 
@@ -63,16 +60,19 @@ function initHeaderAnimation() {
     const heroText = document.querySelector('.hero-text');
     
     if (heroText) {
-        // 初期状態
-        heroText.style.opacity = '0';
-        heroText.style.transform = 'translateX(-50px)';
+        // 初期状態で表示（アニメーションはオプション）
+        heroText.style.opacity = '1';
+        heroText.style.transform = 'translateX(0)';
+        heroText.style.visibility = 'visible';
         
-        // 背景が表示された後にアニメーション開始
-        setTimeout(() => {
-            heroText.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-            heroText.style.opacity = '1';
-            heroText.style.transform = 'translateX(0)';
-        }, 1000);
+        // アニメーション効果を適用する場合は、以下のコメントを外す
+        // heroText.style.opacity = '0';
+        // heroText.style.transform = 'translateX(-50px)';
+        // setTimeout(() => {
+        //     heroText.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        //     heroText.style.opacity = '1';
+        //     heroText.style.transform = 'translateX(0)';
+        // }, 100);
     }
     
     // ムービーセクションのテキストも左からフェードイン
