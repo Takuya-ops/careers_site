@@ -865,7 +865,7 @@ a:hover {
 .section {
     position: relative;
     padding: 320px 0;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .section-bg {
@@ -893,9 +893,13 @@ a:hover {
     background: var(--color-white);
 }
 
+.container {
+    position: relative;
+}
+
 .section-number {
     position: absolute;
-    /* top: 120px; */
+    top: -150px;
     right: 60px;
     font-family: var(--font-oswald);
     font-size: 200px;
@@ -1788,32 +1792,109 @@ a:hover {
     
     /* Compass & Journey Section - SP版 */
     .compass-journey-section {
-        padding: 40px 0;
+        padding: 40px 0 60px;
     }
     
     .compass-journey-content {
+        display: flex;
         flex-direction: column;
-        gap: 40px;
+        gap: 0;
+        align-items: center;
+        padding: 0 20px;
+    }
+    
+    .compass-journey-left {
+        width: 100%;
+        margin-bottom: 40px;
+        display: flex;
+        justify-content: center;
     }
     
     .journey-compass {
         width: 200px;
-        height: 190px;
-        margin: 0 auto;
+        height: 200px;
+        margin: 0;
+    }
+    
+    .journey-compass-outer {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .journey-compass-inner {
+        top: 25px;
+        left: 25px;
+        width: 150px;
+        height: 150px;
+    }
+    
+    .journey-compass-arrow {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .journey-compass-arrow::before {
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 35px solid var(--color-teal);
+    }
+    
+    .journey-compass-arrow::after {
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 20px solid var(--color-teal);
+    }
+    
+    .journey-compass-point {
+        font-size: 18px;
+        width: 35px;
+        height: 35px;
+    }
+    
+    .journey-compass-point.north {
+        top: -8px;
+    }
+    
+    .journey-compass-point.south {
+        bottom: -8px;
+    }
+    
+    .journey-compass-point.west {
+        left: -8px;
+    }
+    
+    .journey-compass-point.east {
+        right: -8px;
+    }
+    
+    .compass-journey-right {
+        width: 100%;
+        padding: 0;
+        align-items: flex-start;
+        gap: 20px;
     }
     
     .journey-text-block {
-        padding: 0 30px;
+        padding: 0;
+        width: 100%;
+        gap: 0;
+        margin-bottom: 20px;
     }
     
     .journey-text {
         font-size: 16px;
         line-height: 2.2em;
+        text-align: left;
+        margin-bottom: 0;
     }
     
     .journey-link {
-        font-size: 29px;
+        font-size: 24px;
+        font-weight: 600;
         margin-top: 20px;
+        text-align: left;
+        align-self: flex-start;
+        color: var(--color-blue-primary);
     }
     
     /* Movie Section - SP版 */
@@ -1854,10 +1935,32 @@ a:hover {
     
     .section-number {
         font-size: 80px;
-        top: 41px;
+        top: 10px;
         right: 15px;
         opacity: 0.5;
         z-index: 10;
+        color: var(--color-white);
+    }
+    
+    .blue-bg .section-number {
+        color: var(--color-white);
+    }
+    
+    .sand-bg .section-number,
+    .light-blue-bg .section-number,
+    .white-bg .section-number {
+        color: var(--color-blue-primary);
+    }
+    
+    .interviews-section .section-number,
+    .welfare-section .section-number,
+    .about-section .section-number,
+    .sns-section .section-number {
+        color: var(--color-blue-primary);
+    }
+    
+    .section-number.teal {
+        color: var(--color-teal);
     }
     
     .section-header {
@@ -1892,7 +1995,7 @@ a:hover {
         align-items: flex-start;
         gap: 8px;
         padding: 24px 0;
-        background: var(--color-white);
+        background: transparent;
         border: 1px solid rgba(255, 255, 255, 0.3);
         border-top: 1px solid rgba(255, 255, 255, 0.3);
         border-bottom: 1px solid rgba(255, 255, 255, 0.3);
