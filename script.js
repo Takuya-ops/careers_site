@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // スムーズスクロール
     initSmoothScroll();
+    
+    // ハンバーガーメニュー
+    initHamburgerMenu();
 });
 
 // ===================================
@@ -310,8 +313,63 @@ function initSmoothScroll() {
                     top: targetPosition,
                     behavior: 'smooth'
                 });
+                
+                // モバイルメニューが開いている場合は閉じる
+                const hamburgerMenu = document.querySelector('.hamburger-menu');
+                const mobileNav = document.querySelector('.mobile-nav');
+                if (hamburgerMenu && mobileNav && mobileNav.classList.contains('active')) {
+                    hamburgerMenu.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
             }
         });
+    });
+}
+
+// ===================================
+// ハンバーガーメニュー
+// ===================================
+function initHamburgerMenu() {
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const mobileNav = document.querySelector('.mobile-nav');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link, .mobile-nav-button');
+    const body = document.body;
+    
+    if (!hamburgerMenu || !mobileNav) return;
+    
+    // ハンバーガーメニューボタンのクリックイベント
+    hamburgerMenu.addEventListener('click', () => {
+        hamburgerMenu.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    });
+    
+    // モバイルメニューのリンクをクリックしたらメニューを閉じる
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburgerMenu.classList.remove('active');
+            mobileNav.classList.remove('active');
+            body.style.overflow = '';
+        });
+    });
+    
+    // メニュー外をクリックしたらメニューを閉じる
+    mobileNav.addEventListener('click', (e) => {
+        if (e.target === mobileNav) {
+            hamburgerMenu.classList.remove('active');
+            mobileNav.classList.remove('active');
+            body.style.overflow = '';
+        }
+    });
+    
+    // ESCキーでメニューを閉じる
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+            hamburgerMenu.classList.remove('active');
+            mobileNav.classList.remove('active');
+            body.style.overflow = '';
+        }
     });
 }
 
